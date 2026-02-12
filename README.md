@@ -1,5 +1,8 @@
 Original mjlabs [Readme](docs/README.md)  
   
+Reinforcement learning with isaacgym --> [IsaacGym](https://github.com/Koh-WH/g1_isaacgym)  
+Teleoperation with Rebocap --> [ReboCap](https://github.com/Koh-WH/Rebocap_mujoco)  
+  
 # Table of Contents
 - [Setup](#Setup)
 - [Train examples](#Train-examples)
