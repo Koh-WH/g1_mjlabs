@@ -1,6 +1,7 @@
 wandb/
 logs/
 onnx/
+pt/
 videos/
 __pycache__/
 MUJOCO_LOG.TXT

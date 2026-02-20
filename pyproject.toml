@@ -48,6 +48,8 @@ dependencies = [
   "onnxscript>=0.5.4",
   "wandb>=0.22.3",
   "pynput>=1.8.1",
+  "joblib>=1.5.3",
+  "pandas>=2.3.3",
 ]
 
 [project.urls]

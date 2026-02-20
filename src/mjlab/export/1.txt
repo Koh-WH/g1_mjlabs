@@ -1,0 +1,1 @@
+uv run python src/mjlab/scripts/export.py Mjlab-Velocity-Flat-Unitree-G1 --wandb-run-path {Path}
