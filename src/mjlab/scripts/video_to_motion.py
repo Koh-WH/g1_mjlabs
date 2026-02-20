@@ -1,14 +1,4 @@
 """
-video_to_motion.py — Video → trained MJLab tracking policy in one command.
-
-Runs these exact steps in the correct envs:
-
-    [gvhmr env]  python tools/demo/demo.py --video=<video> -s
-    [gmr env]    python scripts/gvhmr_to_robot.py ... --robot unitree_g1
-    [gmr env]    python scripts/pkl_to_csv.py --input <pkl>
-    [mjlab env]  uv run python src/mjlab/scripts/csv_to_npz.py ...
-    [mjlab env]  uv run train Mjlab-Tracking-Flat-Unitree-G1 ...
-
 Usage
 -----
     uv run python src/mjlab/scripts/video_to_motion.py \\
@@ -17,26 +7,6 @@ Usage
         --gvhmr-dir  /path/to/GVHMR \\
         --gmr-dir    /path/to/GMR \\
         --wandb-entity my-wandb-username
-
-    # Shorter — set dirs via environment variables instead of flags:
-    export GVHMR_DIR=/path/to/GVHMR
-    export GMR_DIR=/path/to/GMR
-    export WANDB_ENTITY=my-wandb-username
-    uv run python src/mjlab/scripts/video_to_motion.py \\
-        --video /any/path/to/video.mp4 --name my_motion
-
-    # Skip GVHMR if hmr4d_results.pt already exists:
-    uv run python src/mjlab/scripts/video_to_motion.py \\
-        --hmr4d /path/to/hmr4d_results.pt \\
-        --name  my_motion ...
-
-    # Upload artifact only, skip training:
-    uv run python src/mjlab/scripts/video_to_motion.py \\
-        --video ... --name my_motion ... --no-train
-
-    # Static/tripod camera footage (better GVHMR results):
-    uv run python src/mjlab/scripts/video_to_motion.py \\
-        --video ... --name my_motion ... --static-cam
 
 Environment variables (alternative to flags)
 --------------------------------------------

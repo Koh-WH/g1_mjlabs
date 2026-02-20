@@ -192,9 +192,40 @@ uv run train Mjlab-Tracking-Flat-Unitree-G1 --registry-name {Name} --env.scene.n
 ```
   
 # Full pipeline for Video_To_Motion  
-Cut video to allow better detection of human and learning.  
+## Setup
+Have to setup 2 coonda envs first and download the gits data.  
+[GVHMR](https://github.com/zju3dv/GVHMR/tree/main) -> Motion Recovery.  
+[GMR](https://github.com/YanjieZe/GMR/tree/master) -> Motion remapping.  
+  
+1) Setup the 2 conda envs:  
 ```bash
-ffmpeg -ss 15 -i {mp4_path} -t 10 -c copy {new_mp4_path}
+git clone https://github.com/YanjieZe/GMR.git
+cd GMR/
+conda create -n gmr python=3.10 -y
+conda activate gmr
+mkdir outputs
+pip install -e .
+conda install -c conda-forge libstdcxx-ng -y
+conda deactivate
+
+git clone https://github.com/zju3dv/GVHMR.git
+cd GVHMR/
+conda create -n gvhmr python=3.10 -y
+conda activate gvhmr
+pip install chumpy --no-build-isolation
+pip install -r requirements.txt
+pip install -e .
+mkdir outputs
+mkdir -p inputs/checkpoints
+```
+2) Setup the [SMPLX](https://smpl-x.is.tue.mpg.de/login.php) and [SMPL](https://smpl.is.tue.mpg.de/login.php) data accordingly.  
+For GVHMR follow the "Weights" section at the [install.md](https://github.com/zju3dv/GVHMR/blob/main/docs/INSTALL.md).  
+For GMR follow the "Data Preparation" section at the [readme](https://github.com/YanjieZe/GMR/tree/master).  
+  
+## Running video_to_motion.py
+Cut video to allow better detection of human and learning.   
+```bash
+ffmpeg -ss {when to start cutting} -i {mp4_path} -t {how long to cut} -c copy {new_mp4_path}
 ```
 Activate one conda env first.  
 ```bash
@@ -230,13 +261,13 @@ Example of what is done when video_to_motion.py is called:
 (gvhmr) ~/Downloads/GVHMR$ python tools/demo/demo.py --video=docs/example_video/tennis.mp4 -s
 ```
 ```bash
-(gmr) ~/Downloads/GMR$ python scripts/gvhmr_to_robot.py --gvhmr_pred_file /home/koh-wh/Downloads/GVHMR/outputs/demo/tennis/hmr4d_results.pt --robot unitree_g1 --save_path /home/koh-wh/Downloads/GMR/output/tennis.pkl
+(gmr) ~/Downloads/GMR$ python scripts/gvhmr_to_robot.py --gvhmr_pred_file /home/koh-wh/Downloads/GVHMR/outputs/demo/tennis/hmr4d_results.pt --robot unitree_g1 --save_path /home/koh-wh/Downloads/GMR/outputs/tennis.pkl
 ```
 ```bash
-(gmr) ~/Downloads/GMR$ python scripts/pkl_to_csv.py --input /home/koh-wh/Downloads/GMR/output/tennis.pkl
+(gmr) ~/Downloads/GMR$ python scripts/pkl_to_csv.py --input /home/koh-wh/Downloads/GMR/outputs/tennis.pkl
 ```
 ```bash
-(gmr) ~/Downloads/mjlab$ uv run python src/mjlab/scripts/csv_to_npz.py --input-file /home/koh-wh/Downloads/GMR/output/tennis.csv --output-name tennis --input-fps 30 --output-fps 50
+(gmr) ~/Downloads/mjlab$ uv run python src/mjlab/scripts/csv_to_npz.py --input-file /home/koh-wh/Downloads/GMR/outputs/tennis.csv --output-name tennis --input-fps 30 --output-fps 50
 ```
 ```bash
 (gmr) ~/Downloads/mjlab$ uv run train Mjlab-Tracking-Flat-Unitree-G1 --registry-name {wandb_name}/wandb-registry-Motions/tennis --env.scene.num-envs 1024 --agent.max-iterations 10000 --agent.save-interval 500 --agent.run-name "tennis"
