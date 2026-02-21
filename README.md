@@ -1,5 +1,3 @@
-
-https://github.com/user-attachments/assets/1298b188-3450-428c-9366-054ec52dca57
 Original mjlabs [Readme](docs/README.md)  
   
 Reinforcement learning with isaacgym --> [IsaacGym](https://github.com/Koh-WH/g1_isaacgym)  
