@@ -120,12 +120,12 @@ Velocity keyboard control
     <td align="center" width="20%">
       <b>Demo 1</b><br>
       Velocity Tracking Flat<br><br>
-      <img src="docs/videos_images/velocity_flat.gif" width="200">
+      <video src="docs/videos_images/velocity_flat.mp4" width="200" autoplay loop muted playsinline></video>
     </td>
     <td align="center" width="20%">
       <b>Demo 2</b><br>
       Velocity Tracking Rough<br><br>
-      <img src="docs/videos_images/velocity_rough.gif" width="200">
+      <video src="docs/videos_images/velocity_rough.mp4" width="200" autoplay loop muted playsinline></video>
     </td>
   </tr>
 </table>
@@ -163,19 +163,19 @@ uv run python src/mjlab/scripts/list_envs.py
 | 7 | Mjlab-Velocity-Rough-Unitree-Go1                   |  
 ```
   
-# Motiom imitation
+# Motion imitation
 ## 🎥 Demo Videos
 <table>
   <tr>
     <td align="center" width="20%">
       <b>Demo 1</b><br>
       Roundhouse Kick<br><br>
-      <img src="docs/videos_images/roundhousekick.gif" width="200">
+      <video src="docs/videos_images/roundhousekick.mp4" width="200" autoplay loop muted playsinline></video>
     </td>
     <td align="center" width="20%">
       <b>Demo 2</b><br>
       Dance Motion<br><br>
-      <img src="docs/videos_images/dance.gif" width="200">
+      <video src="docs/videos_images/dance.mp4" width="200" autoplay loop muted playsinline></video>
     </td>
   </tr>
 </table>
@@ -239,12 +239,12 @@ uv run play Mjlab-Tracking-Flat-Unitree-G1   --checkpoint-file {path_to_policy.p
     <td align="center" width="20%">
       <b>Demo 1</b><br>
       Shadowboxing<br><br>
-      <img src="docs/videos_images/shadowboxing.gif" width="200">
+      <video src="docs/videos_images/shadowboxing.mp4" width="200" autoplay loop muted playsinline></video>
     </td>
     <td align="center" width="20%">
       <b>Demo 2</b><br>
       Tennis Motion<br><br>
-      <img src="docs/videos_images/tennis.gif" width="200">
+      <video src="docs/videos_images/tennis.mp4" width="200" autoplay loop muted playsinline></video>
     </td>
   </tr>
 </table>
