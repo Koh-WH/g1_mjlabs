@@ -1,3 +1,5 @@
+
+https://github.com/user-attachments/assets/1298b188-3450-428c-9366-054ec52dca57
 Original mjlabs [Readme](docs/README.md)  
   
 Reinforcement learning with isaacgym --> [IsaacGym](https://github.com/Koh-WH/g1_isaacgym)  
@@ -120,12 +122,12 @@ Velocity keyboard control
     <td align="center" width="20%">
       <b>Demo 1</b><br>
       Velocity Tracking Flat<br><br>
-      <video src="docs/videos_images/velocity_flat.mp4" width="200" autoplay loop muted playsinline></video>
+      <video src="https://github.com/user-attachments/assets/8cb1a638-f14c-42ed-a85c-df32da32af16" width="200" autoplay loop muted playsinline></video>
     </td>
     <td align="center" width="20%">
       <b>Demo 2</b><br>
       Velocity Tracking Rough<br><br>
-      <video src="docs/videos_images/velocity_rough.mp4" width="200" autoplay loop muted playsinline></video>
+      <video src="https://github.com/user-attachments/assets/917cd305-9298-4a3a-a9e6-eb8ed4c3351d" width="200" autoplay loop muted playsinline></video>
     </td>
   </tr>
 </table>
@@ -170,12 +172,12 @@ uv run python src/mjlab/scripts/list_envs.py
     <td align="center" width="20%">
       <b>Demo 1</b><br>
       Roundhouse Kick<br><br>
-      <video src="docs/videos_images/roundhousekick.mp4" width="200" autoplay loop muted playsinline></video>
+      <video src="https://github.com/user-attachments/assets/a453dc0f-2b35-460f-9818-436e90d99cec" width="200" autoplay loop muted playsinline></video>
     </td>
     <td align="center" width="20%">
       <b>Demo 2</b><br>
       Dance Motion<br><br>
-      <video src="docs/videos_images/dance.mp4" width="200" autoplay loop muted playsinline></video>
+      <video src="https://github.com/user-attachments/assets/afcd21eb-b268-483b-8c3f-01660170509d" width="200" autoplay loop muted playsinline></video>
     </td>
   </tr>
 </table>
@@ -239,12 +241,12 @@ uv run play Mjlab-Tracking-Flat-Unitree-G1   --checkpoint-file {path_to_policy.p
     <td align="center" width="20%">
       <b>Demo 1</b><br>
       Shadowboxing<br><br>
-      <video src="docs/videos_images/shadowboxing.mp4" width="200" autoplay loop muted playsinline></video>
+      <video src="https://github.com/user-attachments/assets/35ee547e-09c7-46ab-a6fa-5fefe25e9cf2" width="200" autoplay loop muted playsinline></video>
     </td>
     <td align="center" width="20%">
       <b>Demo 2</b><br>
       Tennis Motion<br><br>
-      <video src="docs/videos_images/tennis.mp4" width="200" autoplay loop muted playsinline></video>
+      <video src="https://github.com/user-attachments/assets/588415c6-7fef-4762-89c5-792b306881e8" width="200" autoplay loop muted playsinline></video>
     </td>
   </tr>
 </table>
