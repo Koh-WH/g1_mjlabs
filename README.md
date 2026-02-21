@@ -65,7 +65,7 @@ src/mjlab/
 ```
   
 # Setup
-- Install in exisiting env using uv or can use other installation method. --> [Installation link](#https://mujocolab.github.io/mjlab/source/installation.html)  
+- Install in exisiting env using uv or can use other installation method. --> [Installation link](https://mujocolab.github.io/mjlab/source/installation.html)  
 Local installation.  
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -82,7 +82,7 @@ Test Demo.
 uv run demo
 ```
   
-Create WandB account ---> [Create WandB account](#https://wandb.ai/login)  
+Create WandB account ---> [Create WandB account](https://wandb.ai/login)  
 Work in base directory ~/Downloads/mjlab$    
 
 # Train examples
@@ -113,7 +113,22 @@ uv run play Mjlab-Velocity-Flat-Unitree-G1 --wandb-run-path {Path}
 ```
   
 # Keyboard controls
-Velocity keyboard control.  
+## 🎥 Demo Videos
+Velocity keyboard control  
+<table>
+  <tr>
+    <td align="center" width="20%">
+      <b>Demo 1</b><br>
+      Velocity Tracking Flat<br><br>
+      <img src="docs/videos_images/velocity_flat.gif" width="200">
+    </td>
+    <td align="center" width="20%">
+      <b>Demo 2</b><br>
+      Velocity Tracking Rough<br><br>
+      <img src="docs/videos_images/velocity_rough.gif" width="200">
+    </td>
+  </tr>
+</table>
   
 Keyboard control that reads with every key press.  
 ```bash
@@ -149,6 +164,22 @@ uv run python src/mjlab/scripts/list_envs.py
 ```
   
 # Motiom imitation
+## 🎥 Demo Videos
+<table>
+  <tr>
+    <td align="center" width="20%">
+      <b>Demo 1</b><br>
+      Roundhouse Kick<br><br>
+      <img src="docs/videos_images/roundhousekick.gif" width="200">
+    </td>
+    <td align="center" width="20%">
+      <b>Demo 2</b><br>
+      Dance Motion<br><br>
+      <img src="docs/videos_images/dance.gif" width="200">
+    </td>
+  </tr>
+</table>
+  
 ```bash
 uv add joblib
 ```
@@ -158,7 +189,7 @@ uv run python src/mjlab/scripts/pkl_to_csv.py --file=src/mjlab/pkl/Roundhouse_ki
 ```
 Log in to your WandB account; access Registry from teams; under Core on the left. Create a new registry collection with the name " Motions" and artifact type "All Types".  
   
-## Action 1 (Roundhouse_kick):
+## Action 1 (Roundhouse_kick)
 Calculate velocities and convert to npz; uploads to wandb registry.  
 ```bash
 uv run python src/mjlab/scripts/csv_to_npz.py   --input-file src/mjlab/pkl/csv/Roundhouse_kick.csv   --output-name roundhouse_kick   --input-fps 30 --output-fps 50
@@ -176,7 +207,7 @@ If need to train more.
 uv run train Mjlab-Tracking-Flat-Unitree-G1 --registry-name {Name} --env.scene.num-envs 1024 --agent.max-iterations 5000 --agent.save-interval 200 --agent.run-name "roundhouse_kick" --agent.resume True --agent.load-run "roundhouse_kick"
 ```
   
-## Action 2 (dance):
+## Action 2 (dance)
 ```bash
 uv run python src/mjlab/scripts/csv_to_npz.py --input-file src/mjlab/pkl/csv/dance1_subject2.csv --output-name dance1_subject2.npz --input-fps 30 --output-fps 50
 ```
@@ -191,15 +222,41 @@ If need to train more.
 uv run train Mjlab-Tracking-Flat-Unitree-G1 --registry-name {Name} --env.scene.num-envs 1024 --agent.max-iterations 5000 --agent.save-interval 500 --agent.run-name "dance1.1" --agent.resume True --agent.load-run "dance1"
 ```
   
+### Download npz to local
+Download and rename.  
+```bash
+uv run wandb artifact get {path_of_npz_file_in_registry}:latest --root ./motion_data
+```
+Play local checkpoint and local motion file.  
+```bash
+uv run play Mjlab-Tracking-Flat-Unitree-G1   --checkpoint-file {path_to_policy.pt}   --motion-file {path_to_motion.npz}
+```
+  
 # Full pipeline for Video_To_Motion  
+## 🎥 Demo Videos
+<table>
+  <tr>
+    <td align="center" width="20%">
+      <b>Demo 1</b><br>
+      Shadowboxing<br><br>
+      <img src="docs/videos_images/shadowboxing.gif" width="200">
+    </td>
+    <td align="center" width="20%">
+      <b>Demo 2</b><br>
+      Tennis Motion<br><br>
+      <img src="docs/videos_images/tennis.gif" width="200">
+    </td>
+  </tr>
+</table>
+  
 ## Setup
 Have to setup 2 coonda envs first and download the gits data.  
-[GVHMR](https://github.com/zju3dv/GVHMR/tree/main) -> Motion Recovery.  
-[GMR](https://github.com/YanjieZe/GMR/tree/master) -> Motion remapping.  
+[GVHMR I used](https://github.com/Koh-WH/g1_gvhmr.git), [Original GVHMR](https://github.com/zju3dv/GVHMR/tree/main) -> Motion Recovery.  
+[GMR I edited](https://github.com/Koh-WH/g1_gmr.git), [Original GMR](https://github.com/YanjieZe/GMR/tree/master) -> Motion remapping.  
   
 1) Setup the 2 conda envs:  
 ```bash
-git clone https://github.com/YanjieZe/GMR.git
+git clone https://github.com/Koh-WH/g1_gmr.git
 cd GMR/
 conda create -n gmr python=3.10 -y
 conda activate gmr
@@ -208,7 +265,7 @@ pip install -e .
 conda install -c conda-forge libstdcxx-ng -y
 conda deactivate
 
-git clone https://github.com/zju3dv/GVHMR.git
+git clone https://github.com/Koh-WH/g1_gvhmr.git
 cd GVHMR/
 conda create -n gvhmr python=3.10 -y
 conda activate gvhmr
@@ -218,9 +275,39 @@ pip install -e .
 mkdir outputs
 mkdir -p inputs/checkpoints
 ```
+  
 2) Setup the [SMPLX](https://smpl-x.is.tue.mpg.de/login.php) and [SMPL](https://smpl.is.tue.mpg.de/login.php) data accordingly.  
 For GVHMR follow the "Weights" section at the [install.md](https://github.com/zju3dv/GVHMR/blob/main/docs/INSTALL.md).  
+```
+GVHMR/
+└── inputs/
+    └── checkpoints/
+        ├── body_models/
+        │   ├── smpl/
+        │   │   ├── SMPL_FEMALE.pkl
+        │   │   ├── SMPL_MALE.pkl
+        │   │   └── SMPL_NEUTRAL.pkl
+        │   └── smplx/
+        │       ├── SMPLX_FEMALE.npz
+        │       ├── SMPLX_MALE.npz
+        │       └── SMPLX_NEUTRAL.npz
+        ├── dpvo/
+        ├── gvhmr/
+        ├── hmr2/
+        ├── vitpose/
+        └── yolo/
+```
+  
 For GMR follow the "Data Preparation" section at the [readme](https://github.com/YanjieZe/GMR/tree/master).  
+```
+GMR/
+├── assets/
+│   ├── body_models/
+│   │   └── smplx/
+│   │       ├── SMPLX_FEMALE.npz
+│   │       ├── SMPLX_MALE.npz
+│   │       └── SMPLX_NEUTRAL.npz
+```  
   
 ## Running video_to_motion.py
 Cut video to allow better detection of human and learning.   
@@ -271,7 +358,4 @@ Example of what is done when video_to_motion.py is called:
 ```
 ```bash
 (gmr) ~/Downloads/mjlab$ uv run train Mjlab-Tracking-Flat-Unitree-G1 --registry-name {wandb_name}/wandb-registry-Motions/tennis --env.scene.num-envs 1024 --agent.max-iterations 10000 --agent.save-interval 500 --agent.run-name "tennis"
-```
-```bash
-(gmr) ~/Downloads/mjlab$ uv run play Mjlab-Tracking-Flat-Unitree-G1 --wandb-run-path {wandb_name}/mjlab/bxtf8h1t
 ```
