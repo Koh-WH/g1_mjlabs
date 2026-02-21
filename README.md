@@ -8,7 +8,7 @@ Teleoperation with Rebocap --> [ReboCap](https://github.com/Koh-WH/Rebocap_mujoc
 - [Train examples](#Train-examples)
 - [Keyboard controls](#Keyboard-controls)
 - [Environments available](#Available-Environments-in-mjlab)
-- [Motiom imitation](#Motiom-imitation)
+- [Motion imitation](#Motion-imitation)
 - [Video To Motion](#Full-pipeline-for-Video_To_Motion)
     
 # Folder Structure
