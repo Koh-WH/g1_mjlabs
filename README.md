@@ -251,11 +251,11 @@ uv run play Mjlab-Tracking-Flat-Unitree-G1   --checkpoint-file {path_to_policy.p
   <tr>
     <td align="center" width="20%">
       <b>Human mesh example</b><br><br>
-      <video src="placeholder" width="200" autoplay loop muted playsinline></video>
+      <video src="https://github.com/user-attachments/assets/298691fb-7705-4324-a8c4-6433c1e8fe93" width="200" autoplay loop muted playsinline></video>
     </td>
     <td align="center" width="20%">
       <b>Robot Mapping</b><br><br>
-      <video src="placeholder" width="200" autoplay loop muted playsinline></video>
+      <video src="https://github.com/user-attachments/assets/528a54a2-315c-48eb-9ea4-ef660e10542c" width="200" autoplay loop muted playsinline></video>
     </td>
   </tr>
 </table>
@@ -392,12 +392,12 @@ uv run train Mjlab-Tracking-Flat-Unitree-G1 --registry-name {wandb_name}/wandb-r
     <td align="center" width="20%">
       <b>2. Mapped Motion</b><br>
       <i>GMR Retargeting</i><br><br>
-      <video src="placeholder" width="200%" autoplay loop muted playsinline></video>
+      <video src="https://github.com/user-attachments/assets/da537d8e-b210-474b-b06f-8e4816e9cc77" width="200%" autoplay loop muted playsinline></video>
     </td>
     <td align="center" width="20%">
       <b>3. Trained Output</b><br>
       <i>MJLab Tracking Policy</i><br><br>
-      <video src="placeholder" width="200%" autoplay loop muted playsinline></video>
+      <video src="https://github.com/user-attachments/assets/5a788dd7-b444-4c64-ad27-3a7b2ee3f852" width="200%" autoplay loop muted playsinline></video>
     </td>
   </tr>
 
@@ -414,12 +414,12 @@ uv run train Mjlab-Tracking-Flat-Unitree-G1 --registry-name {wandb_name}/wandb-r
     <td align="center" width="20%">
       <b>2. Mapped Motion</b><br>
       <i>GMR Retargeting</i><br><br>
-      <video src="placeholder" width="200%" autoplay loop muted playsinline></video>
+      <video src="https://github.com/user-attachments/assets/b16f2ace-10ce-4bb3-83f7-926845111746" width="200%" autoplay loop muted playsinline></video>
     </td>
     <td align="center" width="20%">
       <b>3. Trained Output</b><br>
       <i>MJLab Tracking Policy</i><br><br>
-      <video src="placeholder" width="200%" autoplay loop muted playsinline></video>
+      <video src="https://github.com/user-attachments/assets/f59b38e6-78a9-4772-a037-5bd8e5d034cc" width="200%" autoplay loop muted playsinline></video>
     </td>
   </tr>
 </table>
@@ -431,7 +431,7 @@ This is done [here.](https://github.com/Koh-WH/g1_gmr/blob/main/docs/readme.md)
   <tr>
     <td align="center" width="20%">
       <b>Neutral Pose</b><br>
-      <video src="placeholder" width="200" autoplay loop muted playsinline></video>
+      <video src="https://github.com/user-attachments/assets/b9ca4453-347f-407b-a08e-e7b1765a5413" width="200" autoplay loop muted playsinline></video>
     </td>
   </tr>
 </table>
