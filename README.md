@@ -386,7 +386,7 @@ uv run train Mjlab-Tracking-Flat-Unitree-G1 --registry-name {wandb_name}/wandb-r
       <div style="border: 2px dashed #d0d7de; border-radius: 6px; padding: 40px 0; width: 70%; margin: 0 auto; background-color: #f6f8fa; font-family: monospace; font-size: 14px; color: #57606a;">
         📄 <a href="https://github.com/Koh-WH/g1_gmr/blob/main/bvh/squats.bvh" style="text-decoration: none; color: #0969da;">squats.bvh</a>
         <br><br>
-        🎥 <a href="YOUR_SQUATS_VIDEO_LINK_HERE" style="text-decoration: none; color: #0969da;">Input Video</a>
+        🎥 <a href="https://github.com/Koh-WH/g1_mjlabs/tree/main/docs/videos_images/squats_.MP4" style="text-decoration: none; color: #0969da;">Input Video</a>
       </div>
     </td>
     <td align="center" width="20%">
@@ -408,7 +408,7 @@ uv run train Mjlab-Tracking-Flat-Unitree-G1 --registry-name {wandb_name}/wandb-r
       <div style="border: 2px dashed #d0d7de; border-radius: 6px; padding: 40px 0; width: 70%; margin: 0 auto; background-color: #f6f8fa; font-family: monospace; font-size: 14px; color: #57606a;">
         📄 <a href="https://github.com/Koh-WH/g1_gmr/blob/main/bvh/starjumps.bvh" style="text-decoration: none; color: #0969da;">starjumps.bvh</a>
         <br><br>
-        🎥 <a href="YOUR_STARJUMPS_VIDEO_LINK_HERE" style="text-decoration: none; color: #0969da;">Input Video</a>
+        🎥 <a href="https://github.com/Koh-WH/g1_mjlabs/tree/main/docs/videos_images/starjumps_.MP4" style="text-decoration: none; color: #0969da;">Input Video</a>
       </div>
     </td>
     <td align="center" width="20%">
