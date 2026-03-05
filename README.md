@@ -10,6 +10,7 @@ Teleoperation with Rebocap --> [ReboCap](https://github.com/Koh-WH/Rebocap_mujoc
 - [Environments available](#Available-Environments-in-mjlab)
 - [Motion imitation](#Motion-imitation)
 - [Video To Motion](#Full-pipeline-for-Video_To_Motion)
+- [Rebocap To Motion](#Full-pipeline-for-Rebocap_To_Motion)
     
 # Folder Structure
 ```
@@ -247,6 +248,16 @@ uv run play Mjlab-Tracking-Flat-Unitree-G1   --checkpoint-file {path_to_policy.p
       <video src="https://github.com/user-attachments/assets/588415c6-7fef-4762-89c5-792b306881e8" width="200" autoplay loop muted playsinline></video>
     </td>
   </tr>
+  <tr>
+    <td align="center" width="20%">
+      <b>Human mesh example</b><br><br>
+      <video src="placeholder" width="200" autoplay loop muted playsinline></video>
+    </td>
+    <td align="center" width="20%">
+      <b>Robot Mapping</b><br><br>
+      <video src="placeholder" width="200" autoplay loop muted playsinline></video>
+    </td>
+  </tr>
 </table>
   
 ## Setup
@@ -316,7 +327,7 @@ ffmpeg -ss {when to start cutting} -i {mp4_path} -t {how long to cut} -c copy {n
 ```
 Activate one conda env first.  
 ```bash
-conda activate {env}
+conda activate gvhmr
 ```
 Go to mjlab directory. Add pandas for early stop detection.  
 ```bash
@@ -325,10 +336,10 @@ uv add pandas
 ```  
 ```bash
 uv run python src/mjlab/scripts/video_to_motion.py \
-    --video {mp4_path} \
-    --name {name_of_training} \
-    --gvhmr-dir {GVHMR_directory} \
-    --gmr-dir {GMR_directory} \
+    --video docs/videos_images/shadowboxing.mp4 \
+    --name shadowboxing \
+    --gvhmr-dir ../GVHMR \
+    --gmr-dir ../GMR \
     --wandb-entity {wandb_name} \
     --max-iter 50000 \
     --early-stop-patience 200
@@ -344,18 +355,124 @@ convert to npz using mjlabs -> file in wandb registry.
 train and play in mjlabs -> (.../mjlab/logs).  
   
 Example of what is done when video_to_motion.py is called:  
+Already in mjlabs directory with one conda env activated.  
 ```bash
-(gvhmr) ~/Downloads/GVHMR$ python tools/demo/demo.py --video=docs/example_video/tennis.mp4 -s
+conda activate gvhmr
+python tools/demo/demo.py --video=docs/example_video/tennis.mp4 -s
 ```
 ```bash
-(gmr) ~/Downloads/GMR$ python scripts/gvhmr_to_robot.py --gvhmr_pred_file /home/koh-wh/Downloads/GVHMR/outputs/demo/tennis/hmr4d_results.pt --robot unitree_g1 --save_path /home/koh-wh/Downloads/GMR/outputs/tennis.pkl
+conda activate gmr
+cd ~/Downloads/GMR
+python scripts/gvhmr_to_robot.py --gvhmr_pred_file /home/koh-wh/Downloads/GVHMR/outputs/demo/tennis/hmr4d_results.pt --robot unitree_g1 --save_path /home/koh-wh/Downloads/GMR/output/tennis.pkl
 ```
 ```bash
-(gmr) ~/Downloads/GMR$ python scripts/pkl_to_csv.py --input /home/koh-wh/Downloads/GMR/outputs/tennis.pkl
+python scripts/pkl_to_csv.py --input /home/koh-wh/Downloads/GMR/output/tennis.pkl
 ```
 ```bash
-(gmr) ~/Downloads/mjlab$ uv run python src/mjlab/scripts/csv_to_npz.py --input-file /home/koh-wh/Downloads/GMR/outputs/tennis.csv --output-name tennis --input-fps 30 --output-fps 50
+cd ~/Downloads/mjlab
+uv run python src/mjlab/scripts/csv_to_npz.py --input-file /home/koh-wh/Downloads/GMR/output/tennis.csv --output-name tennis --input-fps 30 --output-fps 50
 ```
 ```bash
-(gmr) ~/Downloads/mjlab$ uv run train Mjlab-Tracking-Flat-Unitree-G1 --registry-name {wandb_name}/wandb-registry-Motions/tennis --env.scene.num-envs 1024 --agent.max-iterations 10000 --agent.save-interval 500 --agent.run-name "tennis"
+uv run train Mjlab-Tracking-Flat-Unitree-G1 --registry-name {wandb_name}/wandb-registry-Motions/tennis --env.scene.num-envs 1024 --agent.max-iterations 10000 --agent.save-interval 500 --agent.run-name "tennis"
 ```
+  
+# Full pipeline for Rebocap_To_Motion 
+## 🎥 Demo Videos 
+<table>
+  <tr>
+    <td align="center" width="20%">
+      <b>1. Input BVH (Squats)</b><br>
+      <i>Rebocap MoCap Data</i><br><br>
+      <div style="border: 2px dashed #d0d7de; border-radius: 6px; padding: 60px 0; width: 60%; margin: 0 auto; background-color: #f6f8fa; font-family: monospace; font-size: 16px; color: #57606a;">
+        📄 [squats.bvh](https://github.com/Koh-WH/g1_gmr/blob/main/bvh/squats.bvh)  
+        [Input Video]()
+      </div>
+    </td>
+    <td align="center" width="20%">
+      <b>2. Mapped Motion</b><br>
+      <i>GMR Retargeting</i><br><br>
+      <video src="placeholder" width="200%" autoplay loop muted playsinline></video>
+    </td>
+    <td align="center" width="20%">
+      <b>3. Trained Output</b><br>
+      <i>MJLab Tracking Policy</i><br><br>
+      <video src="placeholder" width="200%" autoplay loop muted playsinline></video>
+    </td>
+  </tr>
+
+  <tr>
+    <td align="center" width="20%">
+      <b>1. Input BVH (Starjumps)</b><br>
+      <i>Rebocap MoCap Data</i><br><br>
+      <div style="border: 2px dashed #d0d7de; border-radius: 6px; padding: 60px 0; width: 60%; margin: 0 auto; background-color: #f6f8fa; font-family: monospace; font-size: 16px; color: #57606a;">
+        📄 [starjumps.bvh](https://github.com/Koh-WH/g1_gmr/blob/main/bvh/starjumps.bvh)  
+        [Input Video]()
+      </div>
+    </td>
+    <td align="center" width="20%">
+      <b>2. Mapped Motion</b><br>
+      <i>GMR Retargeting</i><br><br>
+      <video src="placeholder" width="200%" autoplay loop muted playsinline></video>
+    </td>
+    <td align="center" width="20%">
+      <b>3. Trained Output</b><br>
+      <i>MJLab Tracking Policy</i><br><br>
+      <video src="placeholder" width="200%" autoplay loop muted playsinline></video>
+    </td>
+  </tr>
+</table>
+  
+## Setup
+Need to adjust the axis in GMR using `NeutralPose.bvh` to match [G1 sdk.](https://support.unitree.com/home/en/G1_developer)  
+This is done [here.](https://github.com/Koh-WH/g1_gmr/blob/main/docs/readme.md)  
+<table>
+  <tr>
+    <td align="center" width="20%">
+      <b>Neutral Pose</b><br>
+      <video src="placeholder" width="200" autoplay loop muted playsinline></video>
+    </td>
+  </tr>
+</table>
+  
+## Running rebocap_to_motion.py
+```bash
+conda activate gmr
+cd ~/Downloads/mjlab
+uv run python src/mjlab/scripts/rebocap_to_motion.py \
+  --bvh ../GMR/bvh/squats.bvh \
+  --name squats_rebocap \
+  --gmr-dir ../GMR \
+  --wandb-entity {wandb_name} \
+  --num-envs 1024 \
+  --max-iter 5000 \
+  --save-interval 500
+```
+  
+## Breakdown of rebocap_to_motion.py
+outputs of mapping to g1 -> (../GMR/output).  
+convert to npz using mjlabs -> file in wandb registry.  
+train and play in mjlabs -> (.../mjlab/logs).  
+  
+Example of what is done when rebocap_to_motion.py is called:  
+Already in mjlabs directory with one conda env activated.  
+```bash
+cd ~/Downloads/GMR
+python scripts/convert_mixamo_to_lafan1.py /home/koh-wh/Downloads/GMR/bvh/NeutralPose.bvh /home/koh-wh/Downloads/GMR/bvh/converted/NeutralPose_converted.bvh 
+python scripts/convert_mixamo_to_lafan1.py /home/koh-wh/Downloads/GMR/bvh/starjumps.bvh /home/koh-wh/Downloads/GMR/bvh/converted/starjumps_converted.bvh 
+```
+```bash
+python scripts/bvh_to_robot.py     --bvh_file /home/koh-wh/Downloads/GMR/bvh/converted/NeutralPose_converted.bvh     --robot unitree_g1     --format mixamo     --rate_limit     --save_path output/neutralpose_rebocap.pkl
+
+python scripts/bvh_to_robot.py     --bvh_file /home/koh-wh/Downloads/GMR/bvh/converted/starjumps_converted.bvh     --robot unitree_g1     --format mixamo     --rate_limit     --save_path output/starjumps_rebocap.pkl
+```
+```bash
+python scripts/pkl_to_csv.py --input /home/koh-wh/Downloads/GMR/output/starjumps_rebocap.pkl
+```
+```bash
+cd ..
+cd mjlabs/
+uv run python src/mjlab/scripts/csv_to_npz.py --input-file /home/koh-wh/Downloads/GMR/output/starjumps_rebocap.csv --output-name starjumps_rebocap --input-fps 30 --output-fps 50
+
+uv run train Mjlab-Tracking-Flat-Unitree-G1 --registry-name kohwh-nanyang-technological-university-singapore-org/wandb-registry-Motions/starjumps_rebocap --env.scene.num-envs 1024 --agent.max-iterations 5000 --agent.save-interval 500 --agent.run-name "starjumps_rebocap"
+```
+  
